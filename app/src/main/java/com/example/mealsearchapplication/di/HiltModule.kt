@@ -2,6 +2,10 @@ package com.example.mealsearchapplication.di
 
 import com.example.mealsearchapplication.common.Constants
 import com.example.mealsearchapplication.data.remote.MealSearchApi
+import com.example.mealsearchapplication.data.repository.GetMealDetailsImpl
+import com.example.mealsearchapplication.data.repository.MealSearchRepositoryImpl
+import com.example.mealsearchapplication.domain.repository.GetMealDetailsRepository
+import com.example.mealsearchapplication.domain.repository.MealSearchRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +30,22 @@ object HiltModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MealSearchApi::class.java)
+    }
+
+
+    // this is used for use cases dependency injection in constructor
+    // for each end point
+    @Provides
+    @Singleton
+    fun provideMealSearchRepository(mealSearchApi: MealSearchApi): MealSearchRepository {
+        return MealSearchRepositoryImpl(mealSearchApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providesMealDeatailsRepository(
+        mealSearchApi: MealSearchApi
+    ): GetMealDetailsRepository {
+        return GetMealDetailsImpl(mealSearchApi)
     }
 }
