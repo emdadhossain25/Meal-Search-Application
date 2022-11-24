@@ -1,5 +1,7 @@
 package com.example.mealsearchapplication.data.model
 
+import com.example.mealsearchapplication.domain.model.Meal
+
 data class MealDTO(
     val dateModified: String?,
     val idMeal: String?,
@@ -55,3 +57,12 @@ data class MealDTO(
     val strTags: String?,
     val strYoutube: String?
 )
+
+// crashing issue for data from backend null is rectified here
+fun MealDTO.toDomainMeal(): Meal {
+    return Meal(
+        mealId = this.idMeal ?: "",
+        name = this.strMeal ?: "",
+        image = this.strMealThumb ?: ""
+    )
+}
