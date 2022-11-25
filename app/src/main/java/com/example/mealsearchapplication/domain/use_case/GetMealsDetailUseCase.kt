@@ -8,7 +8,12 @@ import com.example.mealsearchapplication.domain.repository.GetMealDetailsReposit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
-
+// this is the interesting part
+// use case internal operator is singleton
+// invoke has any input and output param
+// returns Flow (coroutine scope)
+// returns the domain layer model object
+//
 class GetMealsDetailUseCase @Inject constructor(private val mealDetailsRepository: GetMealDetailsRepository) {
     operator fun invoke(id: String): Flow<Resource<MealDetails>> = flow {
         try {

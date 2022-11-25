@@ -8,13 +8,12 @@ plugins {
 }
 
 android {
+    compileSdk 31
     namespace 'com.example.mealsearchapplication'
-    compileSdk 32
-
     defaultConfig {
         applicationId "com.example.mealsearchapplication"
-        minSdk 21
-        targetSdk 32
+        minSdk 23
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -34,6 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures{
         dataBinding=true
     }
@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
@@ -85,4 +86,5 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
+
 }
