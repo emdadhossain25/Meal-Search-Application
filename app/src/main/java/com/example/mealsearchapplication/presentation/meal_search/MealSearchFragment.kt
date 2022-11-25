@@ -1,11 +1,11 @@
 package com.example.mealsearchapplication.presentation.meal_search
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import com.example.mealsearchapplication.databinding.FragmentMealSearchBinding
@@ -55,13 +55,17 @@ class MealSearchFragment : Fragment() {
         lifecycle.coroutineScope.launchWhenStarted {
             mealsSearchViewModel.mealsSearchList.collect {
                 if (it.isLoading) {
-
+                    binding.progressMealSearch.visibility=View.VISIBLE
                 }
                 if (it.error.isNotBlank()) {
+                    binding.progressMealSearch.visibility=View.GONE
+
 
                 }
                 it.data?.let {
+                    binding.progressMealSearch.visibility=View.GONE
                     mealsSearchAdapter.setContentList(it.toMutableList())
+
                 }
 
             }

@@ -5,23 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.mealsearchapplication.R
+import com.example.mealsearchapplication.databinding.FragmentMealDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 class MealDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var _binding:FragmentMealDetailsBinding?=null
+    val binding:FragmentMealDetailsBinding
+    get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meal_details, container, false)
+        _binding= FragmentMealDetailsBinding.inflate(inflater,container,false)
+        return _binding?.root
     }
 
 }
